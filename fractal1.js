@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head></head>
-<body>
-
-<script>
 var turtle = require('turtle');
 levels = 5;
 turtle.speed(0);
@@ -41,6 +35,3 @@ le;})
 le;    });
 
 }
-</script>
-</body>
-</html>
