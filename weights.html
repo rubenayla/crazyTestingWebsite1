@@ -33,9 +33,10 @@
 			var moon_gravity = 1.62;
 			var titan_gravity = 1.352;
 			var deimos_gravity = 0.003;
+			var pluto_gravity = 0.62;
 
-			var names = ['mercury','venus','earth','mars','jupiter','uranus','neptune','sun','moon','titan','deimos'];
-			var values = [3.7,8.87,9.8,3.7,24.8,8.87,11.15,274,1.62,1.3582,0.003];
+			var names = ['mercury','venus','earth','mars','jupiter','uranus','neptune','sun','moon','titan','deimos','pluto'];
+			var values = [3.7,8.87,9.8,3.7,24.8,8.87,11.15,274,1.62,1.3582,0.003,0.62];
 
 
 			var weight_input = document.getElementById("weight_input").value
@@ -77,6 +78,9 @@
 				case "de":
 					used_gravity = deimos_gravity;
 					break;
+				case "pl":
+					used_gravity = pluto_gravity;
+					break;
 				default:
 					used_gravity = parseFloat(prompt("We don't know anything about that planet.\nWhich is the gravity there?"));
 					break;
@@ -87,7 +91,6 @@
 	</script>
 	<br>
 	<br>
-	<p> Hola Isma </p>
 	<p>From <a href="https://platzi.com/clases/programacion-basica/">Curso de programacion basica de Platzi</a></p>
 	<br>
 	<p><a href="https://rubenayla.github.io/crazyTestingWebsite/">Principal Website</a><p>
