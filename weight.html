@@ -11,82 +11,78 @@
 	</style>
 </head>
 <body>
-	<input type="button" value="Show the weight in a bunch of planets" id="button1" />
+	<h3>Calculate your weight in another planets</h3>
+	<p>My weight in the earth is</p><input type="text" size="8" id="weight_input"/><p> and I wanna know my weight in </p>
+	<input type="text" size="8" id="planet_input"/>
+	<input type="button" value="Calculate" size="8" id="button1"/>
 	<br>
 	<br>
 	<script>
-		/*DATA*/
-		var mercury_gravity = 3.7;
-		var venus_gravity = 8.87;
-		var earth_gravity = 9.8;
-		var mars_gravity = 3.7;
-		var jupiter_gravity = 24.8;
-		var uranus_gravity = 8.87;
-		var neptune_gravity = 11.15;
-		var sun_gravity = 274;
-		var moon_gravity = 1.62;
-		var titan_gravity = 1.352;
-		var deimos_gravity = 0.003;
-		
-		var names = ['mercury','venus','earth','mars','jupiter','uranus','neptune','sun','moon','titan','deimos'];
-		var values = [3.7,8.87,9.8,3.7,24.8,8.87,11.15,274,1.62,1.3582,0.003];
+		document.getElementById("button1").addEventListener("click", calculateWeight)
 
-		//var weight = parseFloat(document.getElementById("weight_text"));
-		var weight = parseFloat(prompt("Write your weight"));
-		var planet = prompt("For what planet do you want to calculate your weight?");
-		//Choose planet
-		var whichPlanet = planet.toLowerCase().substr(0,2);
-		var used_gravity;
-		switch(whichPlanet){
-			case "me":
-				used_gravity = mercury_gravity;
-				break;
-			case "ve":
-				used_gravity = venus_gravity;
-				break;
-			case "ea":
-				used_gravity = earth_gravity;
-				break;
-			case "ma":
-				used_gravity = mars_gravity;
-				break;
-			case "ju":
-				used_gravity = jupiter_gravity;
-				break;
-			case "ur":
-				used_gravity = uranus_gravity;
-				break;
-			case "ne":
-				used_gravity = neptune_gravity;
-				break;
-			case "su":
-				used_gravity = sun_gravity;
-				break;
-			case "mo":
-				used_gravity = moon_gravity;
-				break;
-			case "ti":
-				used_gravity = titan_gravity;
-				break;
-			case "de":
-				used_gravity = deimos_gravity;
-				break;
-			default:
-				used_gravity = parseFloat(prompt("We don't know anything about that planet.\nWhich is the gravity there?"));
-				break;
-		}
-		//Equation
-		var final_weight = parseFloat((weight / earth_gravity) * used_gravity).toFixed(2);
-		document.write("Your weight in " + planet +  " would be <strong>" + final_weight + " kg</strong>");
+		function calculateWeight(){
+			/*DATA*/
+			var mercury_gravity = 3.7;
+			var venus_gravity = 8.87;
+			var earth_gravity = 9.8;
+			var mars_gravity = 3.7;
+			var jupiter_gravity = 24.8;
+			var uranus_gravity = 8.87;
+			var neptune_gravity = 11.15;
+			var sun_gravity = 274;
+			var moon_gravity = 1.62;
+			var titan_gravity = 1.352;
+			var deimos_gravity = 0.003;
+
+			var names = ['mercury','venus','earth','mars','jupiter','uranus','neptune','sun','moon','titan','deimos'];
+			var values = [3.7,8.87,9.8,3.7,24.8,8.87,11.15,274,1.62,1.3582,0.003];
 
 
-		/*A bunch of weights if you press a button*/
-		document.getElementById("button1").addEventListener("click", someWeights);
-		function someWeights(){
-			for(var i = 0; i < names.length; i++){
-				var current_final_weight = parseFloat((weight / earth_gravity) * values[i]).toFixed(2);
-				document.write("Your weight in <strong>" + names[i] +  " would be " + current_final_weight + " kg</strong><br><br>");
+			var weight_input = document.getElementById("weight_input").value
+			var planet_input = document.getElementById("planet_input").value
+			//Choose planet
+			var whichPlanet = planet_input.toLowerCase().substr(0,2);
+			var used_gravity;
+			switch(whichPlanet){
+				case "me":
+					used_gravity = mercury_gravity;
+					break;
+				case "ve":
+					used_gravity = venus_gravity;
+					break;
+				case "ea":
+					used_gravity = earth_gravity;
+					break;
+				case "ma":
+					used_gravity = mars_gravity;
+					break;
+				case "ju":
+					used_gravity = jupiter_gravity;
+					break;
+				case "ur":
+					used_gravity = uranus_gravity;
+					break;
+				case "ne":
+					used_gravity = neptune_gravity;
+					break;
+				case "su":
+					used_gravity = sun_gravity;
+					break;
+				case "mo":
+					used_gravity = moon_gravity;
+					break;
+				case "ti":
+					used_gravity = titan_gravity;
+					break;
+				case "de":
+					used_gravity = deimos_gravity;
+					break;
+				default:
+					used_gravity = parseFloat(prompt("We don't know anything about that planet.\nWhich is the gravity there?"));
+					break;
 			}
+			var your_weight = (parseFloat(weight_input) / earth_gravity) * used_gravity
+			document.write("Your weight there is <strong>" + parseFloat(your_weight).toFixed(2) + " kg</strong>")
 		}
 	</script>
 	<br>
