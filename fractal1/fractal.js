@@ -11,7 +11,7 @@ turtle.setpos(-screenSize/2,0);
 turtle.pd();
 path = 'f+f--f+f'  // The pattern
 i = 0;
-#// which is the path?. We increase the fractalPath with the path pattern, putting it in the auxPath (which begins being equal to the ). Then our auxPath is the fractalPath
+// which is the path?. We increase the fractalPath with the path pattern, putting it in the auxPath (which begins being equal to the ). Then our auxPath is the fractalPath
 fractalPath = path;
 auxPath = fractalPath;
 for (step in range(1, levels)) {
@@ -23,8 +23,8 @@ for (step in range(1, levels)) {
         else: fractalPath += '-';
 
 displacement /= 3**(levels-1);
-#console.log(fractalPath);
-#// walk the auxPath
+console.log(fractalPath);
+// walk the auxPath
 for (i in range(0, len(fractalPath)) {
     if (fractalPath[i] == 'f': turtle.fd(displacement);
     } else if (fractalPath[i] == '+': turtle.lt(angle);
