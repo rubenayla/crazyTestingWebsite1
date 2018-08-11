@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Your weight in another planet</title>
+	<style>
+		
+
+	</style>
+</head>
+<body>
+	<!-- <p><strong>To know your weight in another planet, type below your current weight:</strong></p> -->
+	<!-- <input type="text" id="weight_text"></input> -->
+
+
+
+	<script>
+		/*DATA*/
+		var earth_gravity = 9.8;
+		var mars_gravity = 3.7;
+		var jupiter_gravity = 24.8;
+
+		//var weight = parseFloat(document.getElementById("weight_text"));
+		var weight2 = parseFloat(prompt("Write your weight"));
+		var final_weight;
+		var used_gravity;
+		//The first letter lowercase of the planet written
+		var planet = prompt("For what planet do you want to calculate your weight?").toLowerCase()[0]
+		//Choose planet
+		switch(planet){
+			case "m":
+				used_gravity = mars_gravity;
+				break;
+			case "j":
+				used_gravity = jupiter_gravity;
+				break;
+			default:
+				alert("We don't know anything of that planet, or we have an error")
+				break;
+		}
+		/*Equation*/
+		final_weight = parseInt((weight2 / earth_gravity) * used_gravity) 
+		
+		//document.write(......) or alert(......)
+		document.write("Your weight in mars is <strong>" + final_weight + " kg</strong>");
+	</script>
+	<p>From <a href="https://platzi.com/clases/programacion-basica/">Curso de programacion basica de Platzi</a></p>
+</body>
+</html>
