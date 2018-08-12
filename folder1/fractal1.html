@@ -54,16 +54,17 @@
 		
 		function drawFractal(){
 			//Adjust the size of the canvas to the window
-			//By doing that the previous fractals drawn get erased
-			canvas1_object.width = window.innerWidth;
+			canvas1_object.width = 0.9*window.innerWidth;
 			canvas1_object.height = 0.3*window.innerWidth;
+			/*canvas1.fillStyle = "#f00";
+			canvas1.fillRect(0,0,canvas1_object.width,canvas1_object.height);*/
 			//Get the levels from the levels_text box
 			var levels = parseInt(document.getElementById("levels_text").value);
 			//Leave a little free space in the canvas
 			var step = 0.9*canvas1_object.width/(3**(levels));
 			var path = calculateFractal(levels);
 			var direction = 0; //Radians
-			var x0 = 0.01*canvas1_object.width, y0 = 0.02*canvas1_object.width;
+			var x0 = 0.05*canvas1_object.width, y0 = 0.1*canvas1_object.height;
 			//Draw the path
 			for(var i=0; i<path.length; i++){
 				if(path[i] == "f"){
@@ -81,7 +82,6 @@
 			document.write("f --> forward<br>+ --> turn 60º in one direction<br>- --> turn 60º in the other direction<br><br>");
 			document.write(calculateFractal(levels));
 		}
-
 	</script>
 </body>
 </html>
