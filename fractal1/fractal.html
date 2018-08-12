@@ -17,40 +17,44 @@
 
 	<canvas width="500" height="500" id="canvas1"></canvas>
 	<script>
-		var d_canvas = document.getElementById("canvas1");
-		var canvas1 = d_canvas.getContext("2d");
+		var canvas1_object = document.getElementById("canvas1");
+		var canvas1 = canvas1_object.getContext("2d");
 
 		function drawLine(color,x0,y0,x,y){
 			canvas1.beginPath();
 			canvas1.strokeStyle = color;
 			canvas1.moveTo(x0,y0);
-			canvas1.lineTo(x0,y0,x,y);
+			canvas1.lineTo(x,y);
 			canvas1.stroke();
 			canvas1.closePath();
 		}
-		/*path = 'f+f--f+f'  # The pattern
-i = 0
-fractalPath = path
-auxPath = fractalPath
-for step in range(1, levels):
-    auxPath = fractalPath  # (Previous)
-    fractalPath = ''  # The fractal that we want
-    for i in range(0, len(auxPath)):
-        if auxPath[i] == 'f': fractalPath += path
-        elif auxPath[i] == '+': fractalPath += '+'
-        else: fractalPath += '-'
-
-displacement /= 3**(levels-1)*/
-		var levels = 3;
-		var path = "f-f++f-f";
+		
+		//Fractal
+		var levels = 8;
+		var step = canvas1_object.width/(3**(levels-1));
+		var path = "f+f--f+f";
 		var fractalPath = path;
-		var auxPath = fractalPath;
 		for(var level = 0; level < levels; level++){
 			auxPath = fractalPath;
-			fractalPath = ""
-			for(var i=0; i < auxPath.length(); )
+			fractalPath = "";
+			for(var i=0; i < auxPath.length; i++){
+				if(auxPath[i] == "f"){fractalPath += path;}
+				else if(auxPath[i] == "+"){fractalPath += "+";}
+				else{fractalPath += "-";}
+			}
 		}
-
+		//Draw it
+		var direction = 0;
+		var x0 = 0, y0 = 0;
+		for(var i=0; i<fractalPath.length; i++){
+			if(fractalPath[i] == "f"){
+				x = x0 + step*Math.cos(direction);
+				y = y0 + step*Math.sin(direction);
+				drawLine("#000",x0,y0,x,y);
+				x0 = x;
+				y0 = y;
+			} else if(fractalPath[i] == "+"){direction += 60*Math.PI/180;} else{direction -= Math.PI/3;}
+		}
 	</script>
 </body>
 </html>
