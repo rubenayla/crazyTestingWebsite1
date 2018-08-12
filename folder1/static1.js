@@ -26,5 +26,4 @@ function dibujoPorClick(){
 		w += d.width/cantidad_lineas;
 		h += d.height/cantidad_lineas;
 	}
-	//'#'+(parseInt(15-p*13/d.width)).toString(16)+'4'+(parseInt(p*13/300)).toString(16)
 }
