@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>FRACTAL1</title>
+	<style>
+		body {
+			background-color:#e0e0e9;
+
+		}
+
+	</style>
+</head>
+<body>
+	<h1>FRACTAL1</h1>
+
+
+	<canvas width="500" height="500" id="canvas1"></canvas>
+	<script>
+		var d_canvas = document.getElementById("canvas1");
+		var canvas1 = d_canvas.getContext("2d");
+
+		function drawLine(color,x0,y0,x,y){
+			canvas1.beginPath();
+			canvas1.strokeStyle = color;
+			canvas1.moveTo(x0,y0);
+			canvas1.lineTo(x0,y0,x,y);
+			canvas1.stroke();
+			canvas1.closePath();
+		}
+		/*path = 'f+f--f+f'  # The pattern
+i = 0
+fractalPath = path
+auxPath = fractalPath
+for step in range(1, levels):
+    auxPath = fractalPath  # (Previous)
+    fractalPath = ''  # The fractal that we want
+    for i in range(0, len(auxPath)):
+        if auxPath[i] == 'f': fractalPath += path
+        elif auxPath[i] == '+': fractalPath += '+'
+        else: fractalPath += '-'
+
+displacement /= 3**(levels-1)*/
+		var levels = 3;
+		var path = "f-f++f-f";
+		var fractalPath = path;
+		var auxPath = fractalPath;
+		for(var level = 0; level < levels; level++){
+			auxPath = fractalPath;
+			fractalPath = ""
+			for(var i=0; i < auxPath.length(); )
+		}
+
+	</script>
+</body>
+</html>
