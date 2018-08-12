@@ -16,12 +16,14 @@
 	<p>How many levels of recursion do you want?</p>
 	<input type="text" value="5" id="levels_text"/>
 	<input type="button" value="Draw" id="button1"/>
+	<input type="button" value="Show the movements" id="button2"/>
 	<br>
 	<canvas width="500" height="500" id="canvas1"></canvas>
 	<script>
 		var canvas1_object = document.getElementById("canvas1");
 		var canvas1 = canvas1_object.getContext("2d");
 		document.getElementById("button1").addEventListener("click",drawFractal);
+		document.getElementById("button2").addEventListener("click",showMovements)
 
 		function drawLine(color,x0,y0,x,y){
 			canvas1.beginPath();
@@ -58,7 +60,7 @@
 			var step = 0.9*canvas1_object.width/(3**(levels));
 			var path = calculateFractal(levels);
 			var direction = 0; //Radians
-			var x0 = 0.01*canvas1_object.width, y0 = 0.01*canvas1_object.width;
+			var x0 = 0.01*canvas1_object.width, y0 = 0.02*canvas1_object.width;
 			//Draw the path
 			for(var i=0; i<path.length; i++){
 				if(path[i] == "f"){
@@ -69,6 +71,12 @@
 					y0 = y;
 				} else if(path[i] == "+"){direction += Math.PI/3;} else{direction -= Math.PI/3;}
 			}
+		}
+
+		function showMovements(){
+			var levels = parseInt(document.getElementById("levels_text").value);
+			document.write("f --> forward<br>+ --> turn 60º in one direction<br>- --> turn 60º in the other direction<br><br>");
+			document.write(calculateFractal(levels));
 		}
 
 	</script>
