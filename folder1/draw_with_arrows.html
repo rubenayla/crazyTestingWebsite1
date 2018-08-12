@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Draw with the mouse</title>
+	<style>
+		body {
+			background-color: #e0e0e9;
+
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Draw something with the arrows or WASD keys</h1>
+	<p>You will use a line with a <strong>thickness</strong> of</p>
+	<input type="text" value="6" id="line_width_text" size="1"/>
+	<p>with <strong>steps</strong> of</p>
+	<input type="text" value="10" id="step_text" size="1"/>
+	<p>and with a <strong>color</strong> of (#rgb between 0 and 255 or name colors)</p>
+	<input type="text" value="#000" id="color_text" size="1"/>
+
+	<br>
+	<br>
+	<canvas width="500" height="500" id="canvas1"></canvas>
+	<br>
+	<br>
+	<p><a href="https://rubenayla.github.io/crazyTestingWebsite/">Principal Website</a><p>
+	<script src="draw_with_arrows.js" language="Javascript"></script>
+
+</body>
+</html>
