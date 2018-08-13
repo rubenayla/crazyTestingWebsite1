@@ -29,7 +29,7 @@ function drawPattern(event){
 	var x = 0;
 	var y = 0;
 	while(x <= mouseX){
-		color = "rgb("+String(x*255/mouseX) +",0,0)";
+		color = "rgb("+String(x*180/mouseX) +",0,0)";
 		drawLine(0,y,x,mouseY);
 		x += mouseX/parseInt(document.getElementById("lines_text").value-1);
 		y += mouseY/parseInt(document.getElementById("lines_text").value-1);
@@ -57,11 +57,10 @@ function drawPattern(event){
 	var x = 0;
 	var y = mouseY;
 	while(x <= mouseX){
-		color = "rgb(0,0," + String(x*255/mouseX) + ")";
+		color = "rgb(0,0," + String(x*180/mouseX) + ")";
 		drawLine(x,mouseY,mouseX,y);
 		x += mouseX/parseInt(document.getElementById("lines_text").value-1);
 		y -= mouseY/parseInt(document.getElementById("lines_text").value-1);
-		
 	}
 }
 function drawIfPressed(event){
