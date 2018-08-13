@@ -1,0 +1,42 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Drawing with the mouse</title>
+	<style>
+		body {
+			background-color: #e0e0ef;
+			font-family: "Open Sans";
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Draw something with the mouse</h1>
+	<p>The line will have a <strong>thickness</strong> of</p>
+	<input type="text" value="2" id="thickness_text" size="1"/>
+	<input type="button" value="thin" id="button_thin"/>
+	<input type="button" value="medium" id="button_medium"/>
+	<input type="button" value="thick" id="button_thick"/>
+	<p>with a <strong>color</strong> (rgb)</p>
+	<input type="text" value="#000" id="color_text" size="1"/>
+	<input type="button" value="black" id="button_black"/>
+	<input type="button" value="gray" id="button_gray"/>
+	<input type="button" value="blue" id="button_blue"/>
+	<input type="button" value="green" id="button_green"/>
+	<input type="button" value="cian" id="button_cian"/>
+	<input type="button" value="red" id="button_red"/>
+	<input type="button" value="pink" id="button_pink"/>
+	<input type="button" value="yellow" id="button_yellow"/>
+	<input type="button" value="random color" id="button_random"/>
+	<input type="button" value="Erase" id="button_erase"/>
+	<input type="button" value="Clear up" id="button_clear"/>
+
+	<br>
+	<br>
+	<canvas width="500" height="500" id="canvas1"></canvas>
+	<br>
+	<br>
+	<p><a href="https://rubenayla.github.io/crazyTestingWebsite/">Principal Website</a><p>
+	<script src="draw_mouse.js" ></script>
+</body>
+</html>
