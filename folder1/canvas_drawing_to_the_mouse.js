@@ -20,6 +20,7 @@ function drawLine(x0,y0,x,y){
 	canvas1.closePath();
 }
 function drawPattern(event){
+	console.log(event);
 	mouseX = event.layerX;
 	mouseY = event.layerY;
 	//We put the background so that the drawings don't overlap
