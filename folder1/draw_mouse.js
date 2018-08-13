@@ -131,4 +131,6 @@ function drawMouse(event){
 }
 
 
-//color cambie con el tiempo y con la rueda del raton
+/*color cambie con el tiempo, con
+la rueda del raton y
+con la posicion en la pantalla*/
