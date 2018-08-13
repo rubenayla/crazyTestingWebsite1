@@ -1,11 +1,12 @@
-document.addEventListener("mousemove", drawPattern);
+document.addEventListener("mousedown", pressMouse);
+document.addEventListener("mouseup", releaseMouse);
+document.addEventListener("mousemove", drawIfPressed);
+pressed = false;
 
 var canvas1_object = document.getElementById("canvas1");
 var canvas1 = canvas1_object.getContext("2d");
 canvas1_object.width = window.innerWidth;
 canvas1_object.height = 1*canvas1_object.width;
-
-
 
 var color = "#000";
 
@@ -18,7 +19,6 @@ function drawLine(x0,y0,x,y){
 	canvas1.stroke();
 	canvas1.closePath();
 }
-
 function drawPattern(event){
 	mouseX = event.layerX;
 	mouseY = event.layerY;
@@ -42,8 +42,8 @@ function drawPattern(event){
 		drawLine(x,0,0,y);
 		x -= mouseX/parseInt(document.getElementById("lines_text").value-1);
 		y += mouseY/parseInt(document.getElementById("lines_text").value-1);
-	//Third corner
 	}
+	//Third corner
 	var x = mouseX;
 	var y = mouseY;
 	
@@ -61,7 +61,18 @@ function drawPattern(event){
 		drawLine(x,mouseY,mouseX,y);
 		x += mouseX/parseInt(document.getElementById("lines_text").value-1);
 		y -= mouseY/parseInt(document.getElementById("lines_text").value-1);
+		
 	}
-
-
+}
+function drawIfPressed(event){
+	if(pressed == true){
+		drawPattern(event);
+	}
+}
+function pressMouse(event){
+	pressed = true;
+	drawPattern(event);
+}
+function releaseMouse(event){
+	pressed = false;
 }
