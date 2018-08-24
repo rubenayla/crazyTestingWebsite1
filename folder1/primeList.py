@@ -11,8 +11,14 @@ def primes(items):
 		else: n += 1
 	return(primeList)
 
-print(primes(6))
+print("The 5 first primes are: " + str(primes(5)))
 
+times = input("How many primes do you want?: ")
+print(primes(int(times)))
+
+#print(primes(1000))
+
+'''
 def rubSuccesion1(items):
 	primeList = primes(items)
 	succ = [1]
@@ -23,3 +29,4 @@ def rubSuccesion1(items):
 	return(succ)
 
 print(rubSuccesion1(10))
+'''
