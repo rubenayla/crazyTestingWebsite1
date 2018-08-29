@@ -1,3 +1,4 @@
+# Monte Carlo method
 def calculatePi(darts = 5000):
 	import random
 	circle = 0
