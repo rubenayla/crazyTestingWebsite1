@@ -67,5 +67,5 @@ function drawLine(canvas_context2d=canvas1,color="#000",x0=0,y0=0,x,y){
 
 
 
-
+//editado
 //varias cajitas con botones para cambiar ancho y largo de la linea
