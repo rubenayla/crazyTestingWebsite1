@@ -1,10 +1,3 @@
-//Canvas things
-var canvas1_object = document.getElementById("canvas1");
-var canvas1 = canvas1_object.getContext("2d");
-canvas1_object.width = 0.8*window.innerWidth;
-canvas1_object.height = canvas1_object.width/2;
-canvas1.fillStyle = "#fff";
-canvas1.fillRect(0,0,canvas1_object.width,canvas1_object.height);
 
 
 
