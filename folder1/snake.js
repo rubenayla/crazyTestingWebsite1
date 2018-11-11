@@ -19,17 +19,21 @@ function draw() {
 
 }
 
-function keyPressed() {
-	if (keyCode === UP_ARROW) {
+/* If I used function keyPressed()...
+I could die turning to myself faster than the frameRate.
+The keyPressed method solves it*/
+s.keyPressed() {
+	// Si se pulsa la tecla y si no se va a ir hacia atrás
+	if (keyCode == UP_ARROW && s.vy < 1) {
 		s.vx = 0;
 		s.vy = -1;
-  } else if (keyCode === DOWN_ARROW) {
+  } else if (keyCode == DOWN_ARROW && s.vy > -1) {
 		s.vx = 0;
 		s.vy = 1;
-  } else if (keyCode === RIGHT_ARROW) {
+  } else if (keyCode == RIGHT_ARROW && s.vx > -1) {
 		s.vx = 1;
 		s.vy = 0;
-  } else if (keyCode === LEFT_ARROW) {
+  } else if (keyCode == LEFT_ARROW && s.vx < 1) {
 		s.vx = -1;
 		s.vy = 0;
   }
