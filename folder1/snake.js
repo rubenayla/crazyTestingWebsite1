@@ -12,31 +12,33 @@ function setup() {
 function draw() {
 	background(51);
 
+	// TURN
+	/*
+		It only turns once per frame so if you are
+		going to the RIGHT and you type fast 
+		UP and LEFT before it moves, you won't die,
+		since you haven't had time to turn.
+		You won't die if you press LEFT going RIGHT
+		for example
+	*/
+	if (keyIsDown(UP_ARROW) && s.vy < 1) {
+		s.vx = 0;
+		s.vy = -1;
+	} else if (keyIsDown(DOWN_ARROW) && s.vy > -1) {
+		s.vx = 0;
+		s.vy = 1;
+	} else if (keyIsDown(RIGHT_ARROW) && s.vx > -1) {
+		s.vx = 1;
+		s.vy = 0;
+	} else if (keyIsDown(LEFT_ARROW) && s.vx < 1) {
+		s.vx = -1;
+		s.vy = 0;
+	}
+
 	s.update();
 	s.show();
 
 	f.show();
-
-}
-
-/* If I used function keyPressed()...
-I could die turning to myself faster than the frameRate.
-The keyPressed method solves it*/
-s.keyPressed() {
-	// Si se pulsa la tecla y si no se va a ir hacia atrás
-	if (keyCode == UP_ARROW && s.vy < 1) {
-		s.vx = 0;
-		s.vy = -1;
-  } else if (keyCode == DOWN_ARROW && s.vy > -1) {
-		s.vx = 0;
-		s.vy = 1;
-  } else if (keyCode == RIGHT_ARROW && s.vx > -1) {
-		s.vx = 1;
-		s.vy = 0;
-  } else if (keyCode == LEFT_ARROW && s.vx < 1) {
-		s.vx = -1;
-		s.vy = 0;
-  }
 }
 
 /* SNAKE OBJECT */
@@ -101,7 +103,6 @@ function Snake(){
 			rect(BOX*this.boxes[i].x, BOX*this.boxes[i].y, BOX, BOX);
 		}
 	};
-
 }
 
 function Food(){
