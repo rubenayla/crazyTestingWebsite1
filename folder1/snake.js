@@ -50,6 +50,7 @@ function Snake(){
 	this.update = function(){
 
 		// COMER O MOVERSE
+		/* (this.boxes[0].x == f.x && this.boxes[0].y == f.y) || this.vx == 1 //FUNNY MODE*/
 		if( this.boxes[0].x == f.x && this.boxes[0].y == f.y ){
 			// COMER
 			len = this.boxes.length;
