@@ -1,7 +1,8 @@
 var BOX = 20; //20px of side
-var GRIDX = Math.floor(0.9*window.innerWidth/BOX);
-var GRIDY = Math.floor(0.9*window.innerHeight/BOX);
+var GRIDX = Math.floor(0.9 * window.innerWidth/BOX);
+var GRIDY = Math.floor(0.9 * window.innerHeight/BOX);
 
+// Proccessing language function
 function setup() {
 	createCanvas(BOX*GRIDX, BOX*GRIDY);
 	frameRate(10);
@@ -46,12 +47,12 @@ function Snake(){
 	//grid position
 	this.vx = 1;
 	this.vy = 0;
-	this.boxes = [ createVector( Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector( Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)), createVector( Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)) ];
+	this.boxes = [ createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)) ];
 	this.update = function(){
 
 		// COMER O MOVERSE
 		/* (this.boxes[0].x == f.x && this.boxes[0].y == f.y) || this.vx == 1 //FUNNY MODE*/
-		if( this.boxes[0].x == f.x && this.boxes[0].y == f.y ){
+		if(this.boxes[0].x == f.x && this.boxes[0].y == f.y){
 			// COMER
 			len = this.boxes.length;
 
@@ -65,8 +66,8 @@ function Snake(){
 			this.boxes[0].x += this.vx;
 			this.boxes[0].y += this.vy;
 			// ACTUALIZAR COMIDA
-			f.x = floor( BOX*Math.random() );
-			f.y = floor( BOX*Math.random() );
+			f.x = floor(BOX*Math.random());
+			f.y = floor(BOX*Math.random());
 
 		} else {
 
@@ -93,7 +94,7 @@ function Snake(){
 
 		if(die)	{
 			alert("GAME OVER.\n" + this.boxes.length + " points");
-			this.boxes = [ createVector( Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector( Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector( Math.floor(GRIDX/2), Math.floor(GRIDY/2)) ];
+			this.boxes = [ createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)) ];
 		}
 
 	};
@@ -108,8 +109,8 @@ function Snake(){
 
 function Food(){
 	//grid position
-	this.x = floor( BOX*Math.random() );
-	this.y = floor( BOX*Math.random() );
+	this.x = floor(BOX*Math.random());
+	this.y = floor(BOX*Math.random());
 	/*
 	this.vx = 0;
 	this.vy = 0;
