@@ -15,7 +15,7 @@ document.addEventListener("keydown", function(){
 		if ((opposite_v_key() != event.key) && (v_key() != event.key)) {
 			s.keys[0] = event.key;
 		}
-	} else if ((event.key != s.keys[s.keys.length-1]) && (opposite_of(event.key) != s.keys[s.keys.length-1]) && (s.keys.length < 10)) {
+	} else if ((event.key != s.keys[s.keys.length-1]) && (opposite_of(event.key) != s.keys[s.keys.length-1]) && (s.keys.length < 5)) {
 		if (event.key == 'ArrowUp') {
 			s.keys[s.keys.length] = event.key;
 		} else if (event.key == 'ArrowDown') {
