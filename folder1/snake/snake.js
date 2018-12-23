@@ -1,6 +1,17 @@
 var BOX = 20; //20px of side
 var GRIDX = Math.floor(0.9 * window.innerWidth/BOX);
 var GRIDY = Math.floor(0.9 * window.innerHeight/BOX);
+document.addEventListener("keydown", function(){
+	if ((event.key == 'ArrowUp') && s.vy < 1) {
+		tecla = 'ArrowUp';
+	} else if ((event.key == 'ArrowDown') && s.vy > -1) {
+		tecla = 'ArrowDown';
+	} else if ((event.key == 'ArrowRight') && s.vx > -1) {
+		tecla = 'ArrowRight';
+	} else if ((event.key == 'ArrowLeft') && s.vx < 1) {
+		tecla = 'ArrowLeft';
+	}
+});
 
 // Proccessing language function
 function setup() {
@@ -8,6 +19,7 @@ function setup() {
 	frameRate(10);
 	s = new Snake();
 	f = new Food();
+	tecla = '';
 }
 
 function draw() {
@@ -19,22 +31,26 @@ function draw() {
 		going to the RIGHT and you type fast 
 		UP and LEFT before it moves, you won't die,
 		since you haven't had time to turn.
-		You won't die if you press LEFT going RIGHT
-		for example
+		You won't die if you press LEFT going RIGHT too.
+		And that doesn't mean you have to keep pressed the
+		keys in order for the program to read it, since
+		it saves what you have pressed in a variable
+		to read later.
 	*/
-	if (keyIsDown(UP_ARROW) && s.vy < 1) {
+	if ((tecla == 'ArrowUp') && s.vy < 1) {
 		s.vx = 0;
 		s.vy = -1;
-	} else if (keyIsDown(DOWN_ARROW) && s.vy > -1) {
+	} else if ((tecla == 'ArrowDown') && s.vy > -1) {
 		s.vx = 0;
 		s.vy = 1;
-	} else if (keyIsDown(RIGHT_ARROW) && s.vx > -1) {
+	} else if ((tecla == 'ArrowRight') && s.vx > -1) {
 		s.vx = 1;
 		s.vy = 0;
-	} else if (keyIsDown(LEFT_ARROW) && s.vx < 1) {
+	} else if ((tecla == 'ArrowLeft') && s.vx < 1) {
 		s.vx = -1;
 		s.vy = 0;
 	}
+	tecla = '';
 
 	s.update();
 	s.show();
