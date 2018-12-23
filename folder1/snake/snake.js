@@ -2,60 +2,111 @@ var BOX = 20; //20px of side
 var GRIDX = Math.floor(0.9 * window.innerWidth/BOX);
 var GRIDY = Math.floor(0.9 * window.innerHeight/BOX);
 document.addEventListener("keydown", function(){
-	if ((event.key == 'ArrowUp') && s.vy < 1) {
-		tecla = 'ArrowUp';
-	} else if ((event.key == 'ArrowDown') && s.vy > -1) {
-		tecla = 'ArrowDown';
-	} else if ((event.key == 'ArrowRight') && s.vx > -1) {
-		tecla = 'ArrowRight';
-	} else if ((event.key == 'ArrowLeft') && s.vx < 1) {
-		tecla = 'ArrowLeft';
+	//console.log(event.key);
+	/*
+		If we are going to put the movement s.keys[0], check that it's not in the same or opposite
+		direction as the velocity of the snake.
+		If we are adding several movements, then check that the last one is not in the same or
+		opposite direction as the previous one.
+		We save the different keys pressed in s.keys[] and every time we change direction
+		we quit the first one and move the rest to i-1.
+	*/
+	if (s.keys.length == 0) {
+		if ((opposite_v_key() != event.key) && (v_key() != event.key)) {
+			s.keys[0] = event.key;
+		}
+	} else if ((event.key != s.keys[s.keys.length-1]) && (opposite_of(event.key) != s.keys[s.keys.length-1]) && (s.keys.length < 10)) {
+		if (event.key == 'ArrowUp') {
+			s.keys[s.keys.length] = event.key;
+		} else if (event.key == 'ArrowDown') {
+			s.keys[s.keys.length] = event.key;
+		} else if (event.key == 'ArrowRight') {
+			s.keys[s.keys.length] = event.key;
+		} else if (event.key == 'ArrowLeft') {
+			s.keys[s.keys.length] = event.key;
+		}
 	}
+	//console.log(s.keys);
 });
 
-// Proccessing language function
+// Proccessing function to start
 function setup() {
 	createCanvas(BOX*GRIDX, BOX*GRIDY);
 	frameRate(10);
 	s = new Snake();
 	f = new Food();
-	tecla = '';
 }
 
 function draw() {
 	background(51);
 
-	// TURN
-	/*
-		It only turns once per frame so if you are
-		going to the RIGHT and you type fast 
-		UP and LEFT before it moves, you won't die,
-		since you haven't had time to turn.
-		You won't die if you press LEFT going RIGHT too.
-		And that doesn't mean you have to keep pressed the
-		keys in order for the program to read it, since
-		it saves what you have pressed in a variable
-		to read later.
-	*/
-	if ((tecla == 'ArrowUp') && s.vy < 1) {
+	// TURN. If we have to move, check
+	var moved = false;
+	
+	if (s.keys[0] == 'ArrowUp') {
 		s.vx = 0;
 		s.vy = -1;
-	} else if ((tecla == 'ArrowDown') && s.vy > -1) {
+		moved = true;
+	} else if (s.keys[0] == 'ArrowDown') {
 		s.vx = 0;
 		s.vy = 1;
-	} else if ((tecla == 'ArrowRight') && s.vx > -1) {
+		moved = true;
+	} else if (s.keys[0] == 'ArrowRight') {
 		s.vx = 1;
 		s.vy = 0;
-	} else if ((tecla == 'ArrowLeft') && s.vx < 1) {
+		moved = true;
+	} else if (s.keys[0] == 'ArrowLeft') {
 		s.vx = -1;
 		s.vy = 0;
+		moved = true;
 	}
-	tecla = '';
-
+	if (moved) {
+		//console.log(s.keys);
+		for (var i = 0; i < (s.keys.length-1); i++) {
+			s.keys[i] = s.keys[i+1];
+		}
+		s.keys.splice(s.keys.length-1); // Deletes last item
+	}
 	s.update();
 	s.show();
 
 	f.show();
+}
+
+function opposite_v_key(){
+	if (s.vx == 1) {
+		return 'ArrowLeft';
+	} else if (s.vx == -1) {
+		return 'ArrowRight';
+	} else if (s.vy == 1) {
+		return 'ArrowUp';
+	} else if (s.vy == -1) {
+		return 'ArrowDown';
+	}
+}
+
+function v_key(){
+	if (s.vx == 1) {
+		return 'ArrowRight';
+	} else if (s.vx == -1) {
+		return 'ArrowLeft';
+	} else if (s.vy == 1) {
+		return 'ArrowDown';
+	} else if (s.vy == -1) {
+		return 'ArrowUp';
+	}
+}
+
+function opposite_of(direction) {
+	if (direction == 'ArrowUp') {
+		return 'ArrowDown';
+	} else if (direction == 'ArrowDown') {
+		return 'ArrowUp';
+	} else if (direction == 'ArrowLeft') {
+		return 'ArrowRight';
+	} else if (direction == 'ArrowRight') {
+		return 'ArrowLeft';
+	}
 }
 
 /* SNAKE OBJECT */
@@ -64,21 +115,22 @@ function Snake(){
 	this.vx = 1;
 	this.vy = 0;
 	this.boxes = [ createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)) ];
+	this.keys = [];
+	this.keys[-1] = null;
 	this.update = function(){
 
 		// COMER O MOVERSE
-		/* (this.boxes[0].x == f.x && this.boxes[0].y == f.y) || this.vx == 1 //FUNNY MODE*/
+		// (this.boxes[0].x == f.x && this.boxes[0].y == f.y) || this.vx == 1 //FUNNY MODE
 		if(this.boxes[0].x == f.x && this.boxes[0].y == f.y){
-			// COMER
-			len = this.boxes.length;
+			// COMER. Nuevo vector al final del arreglo.
+			this.boxes[this.boxes.length] = createVector(this.boxes[this.boxes.length-1].x, this.boxes[this.boxes.length-1].y);
 
-			this.boxes[len] = createVector(this.boxes[len-1].x, this.boxes[len-1].y);
-
-			for (var i = len-1; i > 0; i--) {
+			for (var i = this.boxes.length-2; i > 0; i--) {
+				// No pasar por referencia. Copiar valores hacia el final.
 				this.boxes[i].x = this.boxes[i-1].x;
 				this.boxes[i].y = this.boxes[i-1].y;
 			}
-
+			// Actualizar la cabeza
 			this.boxes[0].x += this.vx;
 			this.boxes[0].y += this.vy;
 			// ACTUALIZAR COMIDA
@@ -111,6 +163,8 @@ function Snake(){
 		if(die)	{
 			alert("GAME OVER.\n" + this.boxes.length + " points");
 			this.boxes = [ createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)) ];
+			this.keys = [];
+			this.keys[-1] = null;
 		}
 
 	};
