@@ -116,7 +116,6 @@ function Snake(){
 	this.vy = 0;
 	this.boxes = [ createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)) ];
 	this.keys = [];
-	this.keys[-1] = null;
 	this.update = function(){
 
 		// COMER O MOVERSE
