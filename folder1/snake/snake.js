@@ -1,6 +1,6 @@
 var BOX = 20; //20px of side
 var GRIDX = Math.floor(0.9 * window.innerWidth/BOX);
-var GRIDY = Math.floor(0.9 * window.innerHeight/BOX);
+var GRIDY = Math.floor(0.5 * window.innerHeight/BOX);
 document.addEventListener("keydown", function(){
 	//console.log(event.key);
 	/*
