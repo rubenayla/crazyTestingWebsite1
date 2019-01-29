@@ -11,28 +11,31 @@ document.addEventListener("keydown", function(){
 		We save the different keys pressed in s.keys[] and every time we change direction
 		we quit the first one and move the rest to i-1.
 	*/
-	if (s.keys.length == 0) {
-		if ((opposite_v_key() != event.key) && (v_key() != event.key)) {
-			s.keys[0] = event.key;
-		}
-	} else if ((event.key != s.keys[s.keys.length-1]) && (opposite_of(event.key) != s.keys[s.keys.length-1]) && (s.keys.length < 5)) {
-		if (event.key == 'ArrowUp') {
-			s.keys[s.keys.length] = event.key;
-		} else if (event.key == 'ArrowDown') {
-			s.keys[s.keys.length] = event.key;
-		} else if (event.key == 'ArrowRight') {
-			s.keys[s.keys.length] = event.key;
-		} else if (event.key == 'ArrowLeft') {
-			s.keys[s.keys.length] = event.key;
+	// console.log(event.key);
+	if(event.key == 'w' || event.key == 'a' || event.key == 's' || event.key == 'd'){
+		if (s.keys.length == 0) {
+			if ((event.key != opposite_v_key()) && (event.key != v_key())) {
+				s.keys[0] = event.key;
+			}
+		} else if ((event.key != s.keys[s.keys.length-1]) && (opposite_of(event.key) != s.keys[s.keys.length-1]) && (s.keys.length < 5)) {
+			if (event.key == 'w') {
+				s.keys[s.keys.length] = event.key;
+			} else if (event.key == 's') {
+				s.keys[s.keys.length] = event.key;
+			} else if (event.key == 'd') {
+				s.keys[s.keys.length] = event.key;
+			} else if (event.key == 'a') {
+				s.keys[s.keys.length] = event.key;
+			}
 		}
 	}
-	//console.log(s.keys);
+	// console.log(s.keys);
 });
 
 // Proccessing function to start
 function setup() {
 	createCanvas(BOX*GRIDX, BOX*GRIDY);
-	frameRate(10);
+	frameRate(8);
 	s = new Snake();
 	f = new Food();
 }
@@ -43,19 +46,19 @@ function draw() {
 	// TURN. If we have to move, check
 	var moved = false;
 	
-	if (s.keys[0] == 'ArrowUp') {
+	if (s.keys[0] == 'w') {
 		s.vx = 0;
 		s.vy = -1;
 		moved = true;
-	} else if (s.keys[0] == 'ArrowDown') {
+	} else if (s.keys[0] == 's') {
 		s.vx = 0;
 		s.vy = 1;
 		moved = true;
-	} else if (s.keys[0] == 'ArrowRight') {
+	} else if (s.keys[0] == 'd') {
 		s.vx = 1;
 		s.vy = 0;
 		moved = true;
-	} else if (s.keys[0] == 'ArrowLeft') {
+	} else if (s.keys[0] == 'a') {
 		s.vx = -1;
 		s.vy = 0;
 		moved = true;
@@ -75,37 +78,37 @@ function draw() {
 
 function opposite_v_key(){
 	if (s.vx == 1) {
-		return 'ArrowLeft';
+		return 'a';
 	} else if (s.vx == -1) {
-		return 'ArrowRight';
+		return 'd';
 	} else if (s.vy == 1) {
-		return 'ArrowUp';
+		return 'w';
 	} else if (s.vy == -1) {
-		return 'ArrowDown';
+		return 's';
 	}
 }
 
 function v_key(){
 	if (s.vx == 1) {
-		return 'ArrowRight';
+		return 'd';
 	} else if (s.vx == -1) {
-		return 'ArrowLeft';
+		return 'a';
 	} else if (s.vy == 1) {
-		return 'ArrowDown';
+		return 's';
 	} else if (s.vy == -1) {
-		return 'ArrowUp';
+		return 'w';
 	}
 }
 
 function opposite_of(direction) {
-	if (direction == 'ArrowUp') {
-		return 'ArrowDown';
-	} else if (direction == 'ArrowDown') {
-		return 'ArrowUp';
-	} else if (direction == 'ArrowLeft') {
-		return 'ArrowRight';
-	} else if (direction == 'ArrowRight') {
-		return 'ArrowLeft';
+	if (direction == 'w') {
+		return 's';
+	} else if (direction == 's') {
+		return 'w';
+	} else if (direction == 'a') {
+		return 'd';
+	} else if (direction == 'd') {
+		return 'a';
 	}
 }
 
@@ -114,7 +117,7 @@ function Snake(){
 	//grid position
 	this.vx = 1;
 	this.vy = 0;
-	this.boxes = [ createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)) ];
+	this.boxes = [createVector(Math.floor(GRIDX/2), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2-1), Math.floor(GRIDY/2)), createVector(Math.floor(GRIDX/2-1), Math.floor(GRIDY/2))];
 	this.keys = [];
 	this.update = function(){
 
