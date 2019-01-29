@@ -35,7 +35,7 @@ document.addEventListener("keydown", function(){
 // Proccessing function to start
 function setup() {
 	createCanvas(BOX*GRIDX, BOX*GRIDY);
-	frameRate(8);
+	frameRate(10);
 	s = new Snake();
 	f = new Food();
 }
