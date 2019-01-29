@@ -136,8 +136,8 @@ function Snake(){
 			this.boxes[0].x += this.vx;
 			this.boxes[0].y += this.vy;
 			// ACTUALIZAR COMIDA
-			f.x = floor(BOX*Math.random());
-			f.y = floor(BOX*Math.random());
+			f.x = floor(GRIDX*Math.random());
+			f.y = floor(GRIDY*Math.random());
 
 		} else {
 
