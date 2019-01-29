@@ -201,8 +201,8 @@ function Snake(){
 
 function Food(){
 	//grid position
-	this.x = floor(BOX*Math.random());
-	this.y = floor(BOX*Math.random());
+	this.x = floor(GRIDX*Math.random());
+	this.y = floor(GRIDY*Math.random());
 	/*
 	this.vx = 0;
 	this.vy = 0;
