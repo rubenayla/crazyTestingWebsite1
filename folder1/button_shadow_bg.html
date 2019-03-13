@@ -5,7 +5,6 @@
 	<style>
   html {
 	background: url('https://picsum.photos/2000/2000') no-repeat center fixed;
-
 }
 div {
 	width: 50vw;
@@ -15,26 +14,13 @@ div {
 	left: 20vh;
 	border-radius: 200px;
 	background: #fff5;
+	transition: box-shadow .5s, background .2s;
 }
-
 div:hover {
-	animation: anim .5s;
 	box-shadow: 15px 30px 40px -10px #0008,
 				inset 10px 20px 50px -10px #ffff,
 				inset -10px -20px 50px -10px #000f;
 		background: #dddf;
-}
-@keyframes anim {
-	0% {
-		box-shadow: 0 0 0 0 #0000;
-	background: #fff5;
-	}
-	100% {
-		box-shadow: 15px 30px 40px -10px #0008,
-				inset 10px 20px 50px -10px #ffff,
-				inset -10px -20px 50px -10px #000f;
-		background: #dddf;
-	}
 }
   </style>
 </head>
